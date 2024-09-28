@@ -1,19 +1,20 @@
-python -m pip install --upgrade pip
-#/usr/bin/env bash
+#!/usr/bin/env bash
 # exit on error
-
-
-
 set -o errexit
 
-
+# Install dependencies
 pip install -r requirements.txt
+
+# Upgrade pip
 python -m pip install --upgrade pip
 
-
+# Collect static files
 python manage.py collectstatic --no-input
+
+# Run database migrations
 python manage.py migrate
-if [[$CREATE_SUPERUSER]];
-then
+
+# Check if a superuser should be created
+if [ "$CREATE_SUPERUSER" = "True" ]; then
   python manage.py createsuperuser --no-input --email "$DJANGO_SUPERUSER_EMAIL"
-fi  
+fi
