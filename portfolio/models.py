@@ -12,6 +12,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
+
 class Blog(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
