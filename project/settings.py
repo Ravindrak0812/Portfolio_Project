@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['portfolio-project1-g5h7.onrender.com', '127.0.0.1', 'localhost']
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 
 # Application definition
@@ -123,7 +124,7 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
-CACHE_MIDDLEWARE_SECONDS = 2000000000000000000000
+CACHE_MIDDLEWARE_SECONDS = 200
 
 CACHES = {
     'default': {
