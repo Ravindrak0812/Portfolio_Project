@@ -129,7 +129,7 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
-CACHE_MIDDLEWARE_SECONDS = 
+CACHE_MIDDLEWARE_SECONDS = 200
 
 CACHES = {
     'default': {
