@@ -81,10 +81,11 @@ WSGI_APPLICATION = "project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Adjust this path as needed
     }
 }
 
@@ -131,14 +132,7 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
-CACHE_MIDDLEWARE_SECONDS = 200
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'enroll_cache',  # Memcached server
-    }
-}
 
 
 

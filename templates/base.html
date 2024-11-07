@@ -13,7 +13,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/suitcase.png' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -75,10 +75,10 @@
                     <li><a href="{% url 'signup' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>SignUp</span></a></li>
           <li><a href="{% url 'handleLogin' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Login</span></a></li>
           {% else %}
-
+          
           <li><a href="{% url 'handleLogout' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Logout</span></a></li>
-         {% endif %}
-           <li><a href="{% url 'assistance' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>MyAsistance</span></a></li>
+          <li><a href="{% url 'assistance' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>MyAsistance</span></a></li>
+          {% endif %}
         </ul>
 
       </nav><!-- .nav-menu -->
