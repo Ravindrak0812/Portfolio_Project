@@ -1,23 +1,61 @@
 {% extends 'base.html' %}
 {% block title %}RK{% endblock title %}
- {% block hero %}
-<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
- <div class="hero-container" data-aos="fade-in">
-  <h1>I'm Ravindra Kumar</h1>
-  <p><span class="typed" data-typed-items=" Designer, Developer, Programmer"></span></p>
- </div>
-</section>
- {% endblock hero %}
-{% block body  %}
+{% load static %}
+{% block hero %}
+    {% block stylecss %}
+        <style>
+            /* Style for download resume button */
+            .download-resume-btn {
+                margin-top: 20px;
+                padding: 8px 18px; /* Slightly smaller button */
+                font-size: 14px;
+                color: white;
+                background-color: #007bff; /* Blue background */
+                border: none;
+                border-radius: 30px; /* Rounded button */
+                cursor: pointer;
+                text-decoration: none;
+                display: inline-block;
+                text-align: center;
+                transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            }
 
- {% for message in messages %}
-          <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-  <strong>{{message}}</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+            /* Hover effect for the button */
+            .download-resume-btn:hover {
+                background-color: black; /* Darker blue on hover */
+                transform: scale(1.05); /* Slightly enlarge the button */
+                box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Add shadow on hover */
+                color:white;
+            }
 
+            /* Focus effect (when the button is clicked) */
+            .download-resume-btn:focus {
+                outline: none;
+                box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Prominent blue outline */
+            }
 
+            /* Styling for the typed text */
+            .typed {
+                color: #CE93CEFF !important; /* Purple color for typing text with increased specificity */
+                font-weight: 600;
+            }
+        </style>
+    {% endblock stylecss %}
 
-{% endfor %}
-
-{% endblock body %}
+    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="hero-container" data-aos="fade-in">
+            <!-- Visitor Count Section -->
+            <div class="visitor-count">
+                <p id="visitor-count">Visitor Count: 0</p>
+            </div>
+            
+            <h1>I'm Ravindra Kumar</h1>
+            <p><span class="typed" data-typed-items="Designer, Developer, Programmer"></span></p>
+            
+            <!-- Download Resume Button -->
+            <a href="{% static 'assets/img/RESUMENEW.docx' %}" download="Ravindra_Kumar_Resume.pdf" class="download-resume-btn">
+                Download Resume
+            </a>
+        </div>
+    </section>
+{% endblock hero %}

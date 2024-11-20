@@ -1,4 +1,4 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +14,7 @@
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/suitcase.png' %}" rel="icon">
+  
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -30,17 +31,8 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
-   {% block stylecss %}
 
-  {% endblock stylecss %}
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -54,41 +46,39 @@
 
       <div class="profile">
         <img src="{% static 'assets/img/1703669161419.jpeg' %}" alt="home img" class="img-fluid rounded-circle">
+        
         <h1 class="text-light"><a href="index.html">Ravindra Kumar</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://x.com/Ravindr60815078?t=IqYHnIbddRM6nbsfDNlAQw&s=08" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="https://github.com/Ravindrak0812" target="_blank" class="github"><i class="bx bxl-github"></i></a>
           <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
           <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-          <a href="https://www.linkedin.com/in/ravindra-kumar-578642207"  class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/ravindra-kumar-578642207" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
         </div>
       </div>
 
-      <nav id="navbar" class="nav-menu navbar">
+      <nav id="navbar" class="nav-menu navbar" style="padding-left:20px">
+
         <ul>
           <li><a href="{% url 'home' %}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="{% url 'about' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-                      <li><a href="{% url 'blog' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Blog</span></a></li>
-                    <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-                    <li><a href="{% url 'certificates' %}" class="nav-link scrollto"><img src="{% static 'assets/img/img11.png' %}" height="22px" width="25px" style="padding-right:5px"> <span>Certificates</span></a></li>
-          <li><a href="{% url 'assistance' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>MyAsistance</span></a></li>
-        
+          <li><a href="{% url 'blog' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Blog</span></a></li>
+          <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="{% url 'certificates' %}" class="nav-link scrollto"><img src="{% static 'assets/img/img11.png' %}" height="22px" width="25px" style="padding-right:5px"> <span>Certificates</span></a></li>
+          <li><a href="{% url 'assistance' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>My Assistance</span></a></li>
         </ul>
 
       </nav><!-- .nav-menu -->
     </div>
   </header><!-- End Header -->
-  {% block hero %}
 
+  {% block hero %}
   {% endblock hero %}
 
   <main id="main">
-
     {% block body %}
-
     {% endblock body %}
   </main>
-  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -100,16 +90,13 @@
         Designed by <a href="">R.K Rauniyar</a>
       </div>
     </div>
-  </footer><!-- End  Footer -->
+  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-
   {% block scripts %}
-
   {% endblock scripts %}
-
 
   <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
@@ -123,6 +110,26 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Visitor Count Script -->
+  <script>
+    // Check if 'visitorCount' exists in localStorage
+    let visitorCount = localStorage.getItem('visitorCount');
+
+    // If it doesn't exist, initialize it to 0
+    if (!visitorCount) {
+      visitorCount = 0;
+    }
+
+    // Increment the visitor count by 1
+    visitorCount = parseInt(visitorCount) + 1;
+
+    // Save the updated count back to localStorage
+    localStorage.setItem('visitorCount', visitorCount);
+
+    // Display the visitor count in the sidebar
+    document.getElementById('visitor-count').textContent = `Visitor Count: ${visitorCount}`;
+  </script>
 
 </body>
 
