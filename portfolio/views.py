@@ -21,6 +21,9 @@ def about(request):
 def assistance(request):
     return render(request, 'Asistance.html')
 
+def certificates(request):
+    return render(request, 'certificates.html')
+
 
 def contact(request):
 

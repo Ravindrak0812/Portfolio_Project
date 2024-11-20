@@ -66,19 +66,13 @@
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="{% url 'home' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="{% url 'home' %}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="{% url 'about' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
                       <li><a href="{% url 'blog' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Blog</span></a></li>
                     <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-{% if not request.user.is_authenticated %}
-
-                    <li><a href="{% url 'signup' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>SignUp</span></a></li>
-          <li><a href="{% url 'handleLogin' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Login</span></a></li>
-          {% else %}
-          
-          <li><a href="{% url 'handleLogout' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Logout</span></a></li>
+                    <li><a href="{% url 'certificates' %}" class="nav-link scrollto"><img src="{% static 'assets/img/img11.png' %}" height="22px" width="25px" style="padding-right:5px"> <span>Certificates</span></a></li>
           <li><a href="{% url 'assistance' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>MyAsistance</span></a></li>
-          {% endif %}
+        
         </ul>
 
       </nav><!-- .nav-menu -->
