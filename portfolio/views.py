@@ -1,13 +1,14 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
 def home(request):
     return render(request, 'home.html')
 
-
+@csrf_exempt
 def handleblog(request):
     posts = Blog.objects.all()
     context = {"posts": posts}
