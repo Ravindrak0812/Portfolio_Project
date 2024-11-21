@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certificates</title>
     <style>
         /* General Styles */
         body {
@@ -91,19 +92,33 @@
             margin: 10px 15px;
         }
 
-        /* Download Button */
-        .download-btn {
+        /* Buttons */
+        .view-btn, .download-btn {
             display: inline-block;
-            margin: 15px 0 20px;
+            margin: 15px 10px 20px;
             padding: 10px 20px;
-            color: #fff;
-            background-color: transparent;
             text-decoration: none;
             border: 1px solid #fff;
             border-radius: 4px;
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .view-btn {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .download-btn {
+            color: #fff;
+            background-color: transparent;
+        }
+
+        .view-btn:hover {
+            background-color: #007bff; /* Blue for View Button */
+            color: #fff;
+            box-shadow: 0 0 10px #007bff, 0 0 20px #007bff;
         }
 
         .download-btn:hover {
@@ -145,71 +160,106 @@
     <header>
         <h1>My Certificates</h1>
     </header>
-    
-<main>
-    <section class="certificate-container">
-        <!-- Certificate Item -->
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>MERN Full Stack Development</h2>
-            <p>Issued by Cipher Schools, July 2024</p>
-            <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
-        </div>
 
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>Python With Django</h2>
-            <p>Issued by Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>ByteBash Hackthon</h2>
-            <p>Issued by Lovely Professional University, Nov 2023</p>
-            <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>Python With Django</h2>
-            <p>Issued Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>MERN Full Stack Development</h2>
-            <p>Issued Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>Python With Django</h2>
-            <p>Issued Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>MERN Full Stack Development</h2>
-            <p>Issued Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>Python With Django</h2>
-            <p>Issued Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
-        </div>
-        <div class="certificate-card">
-            <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px" style="padding-right:5px">
-            <h2>MERN Full Stack Development</h2>
-            <p>Issued Shri Balaji Infotech, dec 2022</p>
-            <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
-        </div>
-     
-       
+    <main>
+        <section class="certificate-container">
+            <!-- Certificate Item -->
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>MERN Full Stack Development</h2>
+                <p>Issued by Cipher Schools, July 2024</p>
+                <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
+            </div>
 
-        <!-- Add more certificates here -->
-    </section>
-</main>
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>Python With Django</h2>
+                <p>Issued by Shri Balaji Infotech, December 2022</p>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>ByteBash Hackathon</h2>
+                <p>Issued by Lovely Professional University, November 2023</p>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
+            </div>
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>MERN Full Stack Development</h2>
+                <p>Issued by Cipher Schools, July 2024</p>
+                <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>Python With Django</h2>
+                <p>Issued by Shri Balaji Infotech, December 2022</p>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>ByteBash Hackathon</h2>
+                <p>Issued by Lovely Professional University, November 2023</p>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
+            </div>
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>MERN Full Stack Development</h2>
+                <p>Issued by Cipher Schools, July 2024</p>
+                <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>Python With Django</h2>
+                <p>Issued by Shri Balaji Infotech, December 2022</p>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>ByteBash Hackathon</h2>
+                <p>Issued by Lovely Professional University, November 2023</p>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
+            </div>
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>MERN Full Stack Development</h2>
+                <p>Issued by Cipher Schools, July 2024</p>
+                <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>Python With Django</h2>
+                <p>Issued by Shri Balaji Infotech, December 2022</p>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
+            </div>
+
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/suitcase.png' %}" height="100px" width="100px">
+                <h2>ByteBash Hackathon</h2>
+                <p>Issued by Lovely Professional University, November 2023</p>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
+            </div>
+
+            <!-- Add more certificates as needed -->
+        </section>
+    </main>
 
     <script>
         // Staggered animations for each card
@@ -228,4 +278,3 @@
 </html>
 
 {% endblock body %}
-
