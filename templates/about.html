@@ -1,70 +1,157 @@
 {% extends 'base.html' %}
 {% block title %}About{% endblock title %}
-{% block body %}
+{% block stylecss %}
 {% load static %}
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    body {
+        background-color: #000; /* Black background */
+        color: #fff; /* White text */
+        font-family: 'Roboto', sans-serif; /* Modern font */
+        line-height: 1.8;
+    }
 
-        <div class="section-title">
-          <h2>About</h2>
-          <p>Hi 👋, I'm Ravindra Kumar
-Aspiring Software Engineer from India</p>
+    .about {
+        padding: 60px 0;
+    }
+
+    .section-title h2 {
+        color: #00ffc3; /* Teal accent color */
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 0 2px 4px rgba(0, 255, 195, 0.5);
+        margin-bottom: 20px;
+    }
+
+    .section-title p {
+        color: #d1d1d1; /* Subtle gray */
+        font-size: 1.2rem;
+    }
+
+    .img-fluid {
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 255, 195, 0.2);
+    }
+
+    .content h3 {
+        font-size: 2rem;
+        color: #00ffc3;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .content .fst-italic {
+        color: #d1d1d1; /* Subtle gray */
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .content ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .content ul li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .content ul li i {
+        color: #00ffc3; /* Teal accent */
+        margin-right: 10px;
+    }
+
+    .skills {
+        margin-top: 40px;
+    }
+
+    .skills h4 {
+        font-size: 1.5rem;
+        color: #00ffc3;
+        margin-bottom: 20px;
+    }
+
+    .skills-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .skills-icons img {
+        width: 60px;
+        height: 60px;
+        background-color: #222;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 255, 195, 0.3);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .skills-icons img:hover {
+        transform: scale(1.1);
+    }
+</style>
+{% endblock stylecss %}
+{% block body %}
+
+<section id="about" class="about">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>About Me</h2>
+            <p>Hi 👋, I'm Ravindra Kumar<br> Aspiring Software Engineer from India</p>
         </div>
 
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <img  src="{% static 'assets/img/DSC_0334.JPG' %}" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>Web Developer</h3>
-            <p class="fst-italic">
-              "Empowering digital landscapes with the stroke of a keystroke. Bridging creativity and functionality, sculpting virtual wonders. Where pixels meet purpose, I thrive as a web developer."
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>08 Dec 2003</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 9115344392</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>UttarPradesh, India</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>22</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>ravindrak0812@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Not Available</span></li>
-                </ul>
-              </div>
+        <div class="row align-items-center">
+            <div class="col-lg-4" data-aos="fade-right">
+                <img src="{% static 'assets/img/DSC_0334.JPG' %}" class="img-fluid" alt="Profile Image">
             </div>
-            <p>
-I am Ravindra Kumar. I completed my Bachelor's of Computer Application in 2023 at Goel Institute of Higher Studies Mahavidyalaya (Lucknow University) and Currently I Pursuing Masters of Computer Application from Lovely Professional University. And I know frontend Technology as well as Backend Technology .
-                # -->Frontend Technology<--
- ~HTML
-~ BASIC CSS
-~BASIC JAVASCRIPT
- ~BOOTSTRAP
- ~TAILWIND CSS
+            <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+                <h3>Web Developer</h3>
+                <p class="fst-italic">
+                    "Empowering digital landscapes with the stroke of a keystroke. Bridging creativity and functionality, sculpting virtual wonders. Where pixels meet purpose, I thrive as a web developer."
+                </p>
 
-# -->Backend Technology<--
- ~DJANGO
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><i class="fas fa-birthday-cake"></i> <strong>Birthday:</strong> <span>08 Dec 2003</span></li>
+                            <li><i class="fas fa-globe"></i> <strong>Website:</strong> <span>www.example.com</span></li>
+                            <li><i class="fas fa-phone"></i> <strong>Phone:</strong> <span>+91 9115344392</span></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <strong>City:</strong> <span>Uttar Pradesh, India</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><i class="fas fa-user"></i> <strong>Age:</strong> <span>22</span></li>
+                            <li><i class="fas fa-graduation-cap"></i> <strong>Degree:</strong> <span>Master</span></li>
+                            <li><i class="fas fa-envelope"></i> <strong>Email:</strong> <span>ravindrak0812@gmail.com</span></li>
+                            <li><i class="fas fa-briefcase"></i> <strong>Freelance:</strong> <span>Not Available</span></li>
+                        </ul>
+                    </div>
+                </div>
 
-# -->Version Control<--
-~GIT
-~GITHUB
-
-#-->Programming Languages<--
-~C
-~C++
-~python
-~Java
-            </p>
-          </div>
+                <div class="skills">
+                    <h4>Technical Skills</h4>
+                    <div class="skills-icons">
+                        <img src="{% static 'assets/img/html.png' %}" alt="HTML"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/css.png' %}" alt="CSS"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/js.png' %}" alt="JavaScript"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/bootstrap.png' %}" alt="Bootstrap"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/tailwindcss.jpg' %}" alt="Tailwind CSS"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/djnago.png' %}" alt="Django"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/git.png' %}" alt="Git"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/github.png' %}" alt="GitHub"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/python.png' %}" alt="Python" height="50px" width="50px">
+                        <img src="{% static 'assets/img/java.png' %}" alt="Java"  height="50px" width="50px">
+                        <img src="{% static 'assets/img/cpp.png' %}" alt="C++" height="50px" width="50px">
+                        <img src="{% static 'assets/img/c.png' %}" alt="C"  height="50px" width="50px">
+                    </div>
+                </div>
+            </div>
         </div>
-
-      </div>
-    </section><!-- End About Section -->
+    </div>
+</section>
 
 {% endblock body %}

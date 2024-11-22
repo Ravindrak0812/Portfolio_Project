@@ -59,14 +59,28 @@
 
       <nav id="navbar" class="nav-menu navbar" style="padding-left:20px">
 
-        <ul>
-          <li><a href="{% url 'home' %}" class="nav-link scrollto "><img src="{% static 'assets/img/home.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Home</span></a></li>
-          <li><a href="{% url 'about' %}" class="nav-link scrollto"> <img src="{% static 'assets/img/information.png' %}" height="22px" width="25px" style="padding-right:6px"><span>About</span></a></li>
-          <li><a href="{% url 'blog' %}" class="nav-link scrollto"><img src="{% static 'assets/img/notes.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Blog</span></a></li>
-          <li><a href="{% url 'contact' %}" class="nav-link scrollto"><img src="{% static 'assets/img/chat.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Contact</span></a></li>
-          <li><a href="{% url 'certificates' %}" class="nav-link scrollto"><img src="{% static 'assets/img/certificate.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Certificates</span></a></li>
-          <li><a href="{% url 'assistance' %}" class="nav-link scrollto"><img src="{% static 'assets/img/operator.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>My Assistance</span></a></li>
-        </ul>
+   <ul>
+  <li><a href="{% url 'home' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/home.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Home</span></a></li>
+
+  <li><a href="{% url 'about' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/information.png' %}" height="22px" width="25px" style="padding-right:6px"><span>About</span></a></li>
+
+  <li><a href="{% url 'blog' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/notes.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Blog</span></a></li>
+
+  <li><a href="{% url 'contact' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/chat.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Contact</span></a></li>
+
+  <li><a href="{% url 'certificates' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/certificate.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Certificates</span></a></li>
+  <li><a href="{% url 'projects' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/code.png' %}" height="25px" width="30px" style="padding-right:6px"> <span>Projects</span></a></li>
+
+  <li><a href="{% url 'assistance' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/operator.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>My Assistance</span></a></li>
+</ul>
+
 
       </nav><!-- .nav-menu -->
     </div>

@@ -25,6 +25,9 @@ def assistance(request):
 def certificates(request):
     return render(request, 'certificates.html')
 
+def projects(request):
+    return render(request, 'projects.html')
+
 
 def contact(request):
 
