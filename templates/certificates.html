@@ -15,15 +15,16 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000; /* Black background */
-            color: #fff; /* White text */
+            background-color: #000;
+            color: #fff;
         }
 
         header {
             text-align: center;
             padding: 20px 10px;
-            background-color: #222; /* Darker black for contrast */
+            background-color: #222;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            animation: fadeInUp 1s forwards; /* Apply animation */
         }
 
         h1 {
@@ -31,9 +32,46 @@
             font-size: 2.5rem;
             color: #fff;
             letter-spacing: 2px;
-            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            display: inline-block;
+
+          
         }
 
+        @keyframes buttonColorChange {
+            0% {
+                color: #ffcc00;
+                color: #222;
+            }
+            50% {
+                color: #ff6600;
+                color: #fff;
+            }
+            100% {
+                color: #222;
+            }
+          }
+  
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                color: #fff;
+            }
+            50% {
+                transform: scale(1.05);
+                color: #007bff;
+            }
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+          }
         main {
             padding: 20px;
         }
@@ -48,8 +86,8 @@
         }
 
         .certificate-card {
-            background-color: #111; /* Slightly lighter black */
-            border: 1px solid #333; /* Subtle border */
+            background-color: #111;
+            border: 1px solid #333;
             border-radius: 8px;
             width: 300px;
             text-align: center;
@@ -57,17 +95,17 @@
             transform: translateY(50px);
             opacity: 0;
             animation: slideUp 1s ease forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .certificate-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 12px rgba(255, 255, 255, 0.1);
+            transform: scale(1.08);
+            box-shadow: 0 8px 12px rgba(255, 255, 255, 0.15);
         }
 
-        /* Certificate Image */
         .certificate-image {
-            width: 100%;
-            height: 200px;
+            width: 300px;
+            height: 150px;
             object-fit: cover;
             border-bottom: 2px solid #333;
             transition: transform 0.3s ease;
@@ -77,22 +115,26 @@
             transform: scale(1.1);
         }
 
-        /* Certificate Title */
         .certificate-card h2 {
             font-size: 1.2rem;
             margin: 15px 0 5px;
             color: #fff;
-            animation: fadeIn 1.5s ease-in;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Certificate Description */
+
+
+        .certificate-card:hover h2::after {
+            width: 100%;
+        }
+
         .certificate-card p {
             font-size: 0.9rem;
-            color: #aaa; /* Light grey for description */
+            color: #aaa;
             margin: 10px 15px;
         }
 
-        /* Buttons */
         .view-btn, .download-btn {
             display: inline-block;
             margin: 15px 10px 20px;
@@ -103,6 +145,10 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        ::selection {
+            color: yellow;
         }
 
         .view-btn {
@@ -116,7 +162,7 @@
         }
 
         .view-btn:hover {
-            background-color: #007bff; /* Blue for View Button */
+            background-color: #007bff;
             color: #fff;
             box-shadow: 0 0 10px #007bff, 0 0 20px #007bff;
         }
@@ -127,28 +173,16 @@
             box-shadow: 0 0 10px #fff, 0 0 20px #fff;
         }
 
-        /* Animations */
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @keyframes slideUp {
-            0% {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .certificate-card {
                 width: 90%;
@@ -158,14 +192,14 @@
 </head>
 <body>
     <header>
-        <h1>My Certificates</h1>
+        <h1 id="certificate">My Certificates</h1>
     </header>
 
     <main>
         <section class="certificate-container">
-            <!-- Certificate Item -->
+            <!-- Example Certificate -->
             <div class="certificate-card">
-                <img src="{% static 'assets/img/mern.jpg' %}" height="150px" width="300px">
+                <img src="{% static 'assets/img/mern.jpg' %}" class="certificate-image">
                 <h2>MERN Full Stack Development</h2>
                 <p>Issued by Cipher Schools, July 2024</p>
                 <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
@@ -173,47 +207,45 @@
             </div>
 
             <div class="certificate-card">
-                <img src="{% static 'assets/img/pythonwithdjnago.jpg' %}" height="150px" width="300px">
+                <img src="{% static 'assets/img/pythonwithdjnago.jpg' %}"  class="certificate-image">
                 <h2>Python With Django</h2>
                 <p>Issued by Shri Balaji Infotech, December 2022</p>
                 <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
                 <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
-            </div>
-
-            <div class="certificate-card">
-                <img src="{% static 'assets/img/hackthon.jpg' %}" height="150px" width="300px">
-                <h2>ByteBash Hackathon</h2>
-                <p>Issued by Lovely Professional University, November 2023</p>
-                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
-                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
-            </div>
-            <div class="certificate-card">
-                <img src="{% static 'assets/img/mern.jpg' %}" height="150px" width="300px">
-                <h2>MERN Full Stack Development</h2>
-                <p>Issued by Cipher Schools, July 2024</p>
-                <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
-                <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
-            </div>
-
-            <div class="certificate-card">
-                <img src="{% static 'assets/img/pythonwithdjnago.jpg' %}" height="150px" width="300px">
-                <h2>Python With Django</h2>
-                <p>Issued by Shri Balaji Infotech, December 2022</p>
-                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
-                <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
-            </div>
-
-            <div class="certificate-card">
-                <img src="{% static 'assets/img/hackthon.jpg' %}" height="150px" width="300px">
-                <h2>ByteBash Hackathon</h2>
-                <p>Issued by Lovely Professional University, November 2023</p>
-                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
-                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
             </div>
             
-        
-
-            <!-- Add more certificates as needed -->
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/hackthon.jpg' %}" class="certificate-image">
+                <h2>ByteBash Hackathon</h2>
+                <p>Issued by Lovely Professional University, November 2023</p>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/Ravindra_BYTEBASH.pdf' %}" download class="download-btn">Download</a>
+            </div>
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/sql.jpg' %}" class="certificate-image">
+                <h2>SQL</h2>
+                <p>Issued by HackerRank, July 2020</p>
+                <a href="{% static 'assets/img/image.png' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/image.png' %}" download class="download-btn">Download</a>
+            </div>
+            
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/c++1.jpg' %}"class="certificate-image">
+                <h2>C++</h2>
+                <p>Issued by Cipher Schools, July 2024</p>
+                <a href="{% static 'assets/img/C++_Certificate (2).png' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/C++_Certificate (2).png' %}" download class="download-btn">Download</a>
+            </div>
+            
+            <div class="certificate-card">
+                <img src="{% static 'assets/img/pyt.jpg' %}" class="certificate-image">
+                <h2>Basic Python</h2>
+                <p>Issued by HackerRank, July 2020</p>
+                <a href="{% static 'assets/img/python1.png' %}" target="_blank" class="view-btn">View</a>
+                <a href="{% static 'assets/img/python1.png' %}" download class="download-btn">Download</a>
+            </div>
+            
+            <!-- Add More Certificates -->
         </section>
     </main>
 
@@ -222,15 +254,9 @@
         document.querySelectorAll('.certificate-card').forEach((card, index) => {
             card.style.animationDelay = `${index * 0.2}s`;
         });
-
-        // Tooltip for download buttons
-        document.querySelectorAll('.download-btn').forEach((button) => {
-            button.addEventListener('mouseover', () => {
-                button.title = "Click to download this certificate";
-            });
-        });
     </script>
 </body>
 </html>
 
 {% endblock body %}
+
