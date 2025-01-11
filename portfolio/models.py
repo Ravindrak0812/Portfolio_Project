@@ -23,10 +23,4 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
     
-
-class Visitor(models.Model):
-    ip_address = models.GenericIPAddressField(unique=True)
-    visited_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.ip_address
+    

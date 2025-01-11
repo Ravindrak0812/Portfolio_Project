@@ -56,11 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'portfolio.middleware.VisitorMiddleware',
 ]
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
-
 
 ROOT_URLCONF = "project.urls"
 

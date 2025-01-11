@@ -8,6 +8,6 @@ urlpatterns = [
     path('assistance', views.assistance, name="assistance"),
     path('certificates', views.certificates, name="certificates"),
     path('projects', views.projects, name="projects"),
-    path('visitor-count/', views.visitor_count, name='visitor_count'),
+    
 
 ]
