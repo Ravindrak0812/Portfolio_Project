@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+from .models import Visitor
 
 
 def home(request):
@@ -42,3 +42,9 @@ def contact(request):
         messages.success(request, "Thanks for contacting Us. We will get by you soon..")
         return redirect('/contact')
     return render(request, 'contact.html')
+
+
+
+def visitor_count(request):
+    count = Visitor.objects.count()
+    return render(request, 'home.html', {'unique_visitors': count})
