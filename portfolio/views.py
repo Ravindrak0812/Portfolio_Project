@@ -43,3 +43,25 @@ def contact(request):
         return redirect('/contact')
     return render(request, 'contact.html')
 
+def project_view(request):
+    projects = Project.objects.all()  # Fetch all projects from the database
+    return render(request, 'projects.html', {'projects': projects})
+
+
+def search(request):
+    query = request.GET.get('q', '')
+    if query:
+        results = Blog.objects.filter(
+            title__icontains=query
+        ) | Blog.objects.filter(
+            description__icontains=query
+        ) | Blog.objects.filter(
+            authname__icontains=query
+        )
+    else:
+        results = Blog.objects.none()  # Return no results if query is empty
+
+    return render(request, 'search_results.html', {'query': query, 'results': results})
+
+
+

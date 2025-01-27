@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog{% endblock title %}
+{% block title %}Search Results{% endblock title %}
 
 {% block body %}
 {% load static %}
 
 <style>
-
-    
     /* Terminal Loader Styles */
     @keyframes blinkCursor {
         50% {
@@ -126,35 +124,8 @@
             transform: translateY(0);
         }
     }
+
     
-    /* Search Form Styling */
-    .search-form {
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .search-form input {
-        padding: 10px;
-        width: 70%;
-        font-size: 1.1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .search-form button {
-        padding: 10px 20px;
-        font-size: 1.1rem;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .search-form button:hover {
-        background-color: #0056b3;
-    }
-
     /* Blog Section Styling */
     .blog-section {
         padding-top: 30px;
@@ -202,8 +173,25 @@
         cursor: pointer;
         text-decoration: underline;
     }
-    .img-fluid {
-        object-fit:  fill;
+
+    /* Back to Blog Button */
+    .back-to-blog {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-to-blog a {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .back-to-blog a:hover {
+        background-color: #218838;
     }
 
 </style>
@@ -221,48 +209,52 @@
     <div class="text">Loading...</div>
 </div>
 
-<!-- Blog Section -->
-<section id="services" class="services hidden">
-    <!-- Search Form -->
-    <div class="search-form" style="padding-bottom:60px">
-        <form method="get" action="{% url 'search' %}">
-            <input type="text" name="q" placeholder="Search blogs..." required>
-            <button type="submit">Search</button>
-        </form>
-    </div>
 
-    <div class="container" style="padding-bottom:30px">
+<!-- Blog Section -->
+<section id="services" class="services hidden blog-section">
+    <div class="container">
         <div class="section-title">
-            <h2>Welcome to my Blog</h2>
+            <h2>Search Results</h2>
         </div>
         <div class="row">
-            {% for post in posts reversed %}
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-                <div class="icon">
-                    <img
-                        style="border-radius:40%"
-                        width="100%"
-                        height="100%"
-                        src="{{ post.img.url }}"
-                        class="img-fluid"
-                        alt="no-image"
-                    />
+            {% if results %}
+                {% for post in results %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="blog-item">
+                            <div class="icon" style="border-radius:40%; height:50px; width:50px">
+                                <img
+                                    style="border-radius:40%"
+                                    width="100%"
+                                    height="100%"
+                                    src="{{post.img.url}}"
+                                    class="img-fluid"
+                                    alt="no-image"
+                                />
+                            </div>
+                            <h4 style="padding-left:20px">{{ post.title }}</h4>
+                            <p id="description-{{ post.title|slugify }}">
+                                {{ post.description|truncatewords:40 }}
+                                <span class="read-more" onclick="toggleDescription('{{ post.title|slugify }}')">Read More</span>
+                                <span class="full-description" style="display:none">{{ post.description }}</span>
+                            </p>
+                            <p><strong>Author:</strong> {{ post.authname }}</p>
+                            <p><strong>Posted on:</strong> {{ post.timeStamp }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-results">
+                    <p>No results found.</p>
                 </div>
-                <h4 class="title"><a href="">{{ post.title }}</a></h4>
-                <p class="description" data-title="{{ post.title }}">
-                    {{ post.description|truncatewords:40 }}
-                    <span class="read-more" onclick="toggleDescription('{{ post.title }}')">Read More</span>
-                    <span class="full-description" style="display:none">{{ post.description }}</span>
-                </p>
-                <div style="padding-left:80px">
-                    <h6>Posted By :<b class="text-primary">{{ post.authname }}</b></h6>
-                    <h6>Posted on :<b class="text-primary">{{ post.timeStamp }}</b></h6>
-                </div>
-            </div>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </section>
+
+<!-- Back to Blog Button -->
+<div class="back-to-blog">
+    <a href="{% url 'blog' %}">Back to Blog</a>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -288,8 +280,8 @@
 
     // Function to toggle the full description
     function toggleDescription(postTitle) {
-        const fullDescription = document.querySelector(`[data-title='${postTitle}'] .full-description`);
-        const readMoreLink = document.querySelector(`[data-title='${postTitle}'] .read-more`);
+        const fullDescription = document.querySelector(`#description-${postTitle} .full-description`);
+        const readMoreLink = document.querySelector(`#description-${postTitle} .read-more`);
         
         if (fullDescription.style.display === "none") {
             fullDescription.style.display = "inline";

@@ -1,139 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}My-Projects{% endblock title %}
+{% block title %}My Projects{% endblock title %}
 
 {% block body %}
 <section id="projects" class="projects-section" style="background-color: #000; padding: 50px 0;">
     <div class="container">
-    
-      <h2 class="text-center text-light  mpro" style="font-size: 36px; margin-bottom: 40px; text-align: center; padding: 20px 10px; background-color: #222; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);">My Projects</h2>
-      <div  class="project-count text-light" style="font-size: 18px; margin-bottom: 20px; margin-left:45%;" >
-        Total Projects: <span id="project-count" >0</span>
+        <h2 class="text-center text-light mpro" style="font-size: 36px; margin-bottom: 40px; text-align: center; padding: 20px 10px; background-color: #222; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);">My Projects</h2>
+        <div class="project-count text-light" style="font-size: 18px; margin-bottom: 20px; margin-left:45%;">
+            Total Projects: <span id="project-count">{{ projects|length }}</span>
+        </div>
+        <div class="row justify-content-center">
+           {% for project in projects %}
+    <div class="col-md-4 col-sm-6 mb-4">
+        <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
+            <img src="{{ project.image.url }}" class="img-fluid" alt="{{ project.title }}" style="width: 100%; height: 200px; object-fit: cover;">
+            <div class="project-info p-3" style="color: #fff;">
+                <h4>{{ project.title }}</h4>
+                <p>{{ project.description }}</p>
+                <a href="{{ project.github_link }}" target="_blank" class="btn btn-primary" style="border: none;">
+                    <img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px"> View on GitHub
+                </a>
+                <!-- Like Button -->
+                <button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
+                    <img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
+                    Like <span class="like-count">0</span>
+                </button>
+            </div>
+        </div>
     </div>
-    
-      <div class="row justify-content-center">
-    
-    
-   <!-- Project 1 -->
-   <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/curd.jpg' %}" class="img-fluid" alt="Project 1" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>Data Management System</h4>
-        <p>The CURD Data Management System is a Django-based web app for efficiently managing data with Create, Read, Update, and Delete functionality, featuring a responsive interface.</p>
-        <a href="https://github.com/Ravindrak0812/CURD" target="_blank" class="btn btn-primary" style=" border: none;"> <img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-       <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
+{% empty %}
+    <p>No projects available.</p>
+{% endfor %}
 
-      </div>
-    </div>
-  </div>
-
-  <!-- Project 2 -->
-  <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/news.jpg' %}" class="img-fluid" alt="Project 2" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>News Portal</h4>
-        <p>The News Portal is a PHP-based web application with HTML, CSS, and JavaScript, delivering real-time updates and category-based news in a dynamic and user-friendly interface.</p>
-        <a href="https://github.com/Ravindrak0812/NewsPortal" target="_blank" class="btn btn-primary" style="border: none;"><img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-        <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Project 3 -->
-  <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/jobportal.jpg' %}" class="img-fluid" alt="Project 3" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>Job Portal</h4>
-        <p>The Job Portal is a Django-based web application built with HTML, CSS, JavaScript, and Bootstrap, providing an intuitive platform for job seekers and employers to connect efficiently.</p>
-        <a href="https://github.com/Ravindrak0812/Job_Portal" target="_blank" class="btn btn-primary" style=" border: none;"><img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-          <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
-
-      </div>
-    </div>
-  </div>
-  <!-- Project 4 -->
-  <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/chatapp.png' %}" class="img-fluid" alt="Project 3" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>ChatApp</h4>
-        <p>The ChatApp is a real-time messaging application built with the MERN stack, offering seamless communication and a responsive user interface.</p>
-        <a href="https://github.com/Ravindrak0812/CHATAPP" target="_blank" class="btn btn-primary" style=" border: none;"><img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-  <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/weather.jpg' %}" class="img-fluid" alt="Project 3" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>Weather App</h4>
-        <p>The Weather App is a web application built with HTML, CSS, and JavaScript, providing real-time weather updates with a clean and interactive user interface.</p>
-        <a href="https://github.com/Ravindrak0812/CHATAPP" target="_blank" class="btn btn-primary" style=" border: none;"><img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-  <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/elearning.jpg' %}" class="img-fluid" alt="Project 3" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>E-Learning</h4>
-        <p>The E-Learning Platform is a Django-based web application built with HTML, CSS, JavaScript, and Bootstrap, offering an intuitive interface for online courses and skill development.</p>
-        <a href="https://github.com/Ravindrak0812/Learn_Skills" target="_blank" class="btn btn-primary" style=" border: none;"><img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-  <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-sm-6 mb-4">
-    <div class="project-card" style="border: 1px solid #333; border-radius: 8px; overflow: hidden; background-color: #222;">
-      <img src="{% static 'assets/img/jarvish.jpg' %}" class="img-fluid" alt="Project 3" style="width: 100%; height: 200px; object-fit: cover;">
-      <div class="project-info p-3" style="color: #fff;">
-        <h4>Jarvish Asistance</h4>
-        <p>The Jarvis Assistance is a Python-based virtual assistant offering voice-command functionality for performing tasks and providing user-friendly automation.</p>
-        <a href="https://github.com/Ravindrak0812/Learn_Skills" target="_blank" class="btn btn-primary" style=" border: none;"><img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="25px" width="25px">  View on GitHub</a>
-   <!-- Like Button and Count -->
-<button class="btn like-btn" onclick="toggleLike(this)" style="background-color: transparent; border: none; margin-top: 10px; color: #ffcc00; font-size: 14px;">
-<img src="{% static 'assets/img/like.png' %}" height="30px" width="30px" style="vertical-align: middle; margin-right: 5px;">
-Like <span class="like-count">0</span>
-</button>
-
-      </div>
-        <!-- Other Projects Go Here -->
-  
-      </div>
+        </div>
     </div>
 </section>
 
@@ -143,22 +42,22 @@ Like <span class="like-count">0</span>
         const likeCountSpan = button.querySelector(".like-count");
         const projectTitle = button.closest(".project-info").querySelector("h4").textContent; // Unique identifier for each project
         const localStorageKey = `likeCount-${projectTitle}`; // Key to store like count for this project
-    
+
         // Retrieve the current like count from Local Storage or initialize it
         let likeCount = parseInt(localStorage.getItem(localStorageKey), 10) || 0;
-    
+
         // Increment the like count by 1
         likeCount++;
         likeCountSpan.textContent = likeCount;
-    
+
         // Save the updated like count in Local Storage
         localStorage.setItem(localStorageKey, likeCount);
-    
+
         // Add a temporary animation class for the "Liked" effect
         button.classList.add("liked");
         setTimeout(() => button.classList.remove("liked"), 300);
     }
-    
+
     // Load initial like counts from Local Storage on page load
     document.addEventListener("DOMContentLoaded", () => {
         const likeButtons = document.querySelectorAll(".like-btn");
@@ -166,25 +65,51 @@ Like <span class="like-count">0</span>
             const projectTitle = button.closest(".project-info").querySelector("h4").textContent; // Unique identifier
             const localStorageKey = `likeCount-${projectTitle}`;
             const storedCount = parseInt(localStorage.getItem(localStorageKey), 10) || 0;
-    
+
             // Set the like count from Local Storage
             const likeCountSpan = button.querySelector(".like-count");
             likeCountSpan.textContent = storedCount;
         });
     });
-    document.addEventListener("DOMContentLoaded", () => {
-      // Count the number of project cards
-      const projectCards = document.querySelectorAll('.project-card');
-      const projectCount = projectCards.length;
-      
-      // Update the project count
-      document.getElementById('project-count').textContent = projectCount;
-  });
-  
 </script>
 
 <style>
- /* Container for the header section */
+   /* Like button hover animation */
+.like-btn {
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+  background-color: #444;
+}
+
+/* Liked button style (animation when clicked) */
+.like-btn.liked {
+  background-color: #222;
+  color: #f00;
+  transform: scale(1.2);
+}
+
+/* Smooth animation for the like button after clicking */
+.like-btn.liked img {
+  animation: pulse 1s ease-in-out;  /* Increased duration to slow it down */
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);  /* Reduced scale */
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+/* Container for the header section */
 .projects-header {
   background-color: #1e1e1e;
   padding: 40px 20px;
@@ -223,18 +148,7 @@ Like <span class="like-count">0</span>
   font-weight: 700;
 }
 
-/* Project container styles */
-.projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 20px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-
-  
- /* Hover effect for project cards */
+/* Hover effect for project cards */
 .project-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -244,83 +158,22 @@ Like <span class="like-count">0</span>
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Like button hover animation */
-.like-btn {
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-.like-btn:hover {
-  transform: scale(1.1);
-  background-color: #444;
-}
-
-/* Liked button style (animation when clicked) */
-.like-btn.liked {
-  background-color: #222;
-  color: #f00;
-  transform: scale(1.2);
-}
-
-/* Smooth animation for the like button after clicking */
-.like-btn.liked img {
-  animation: pulse 0.6s ease-in-out;
-}
-
-/* Add animation for the title */
-h2 {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s forwards; /* Apply animation */
-}
-
-/* Keyframes for fade and slide-up effect */
-@keyframes fadeInUp {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-::selection {
-  color: yellow;
-}
-
-/* Pulse animation */
-@keyframes pulse {
-  0% {
-      transform: scale(1);
-  }
-  50% {
-      transform: scale(1.2);
-  }
-  100% {
-      transform: scale(1);
-  }
-}
-
 /* Infinite color change animation on the button */
 @keyframes buttonColorChange {
   0% {
       color: #ffcc00;
-      color: #222;
   }
   50% {
       color: #ff6600;
-      color: #fff;
   }
   100% {
       color: #222;
   }
 }
 
-
 /* Apply infinite animation to the project buttons */
 .project-info .btn {
-  animation: buttonColorChange 0.5s infinite ease-in-out;
+  animation: buttonColorChange 1s infinite ease-in-out;
   transition: all 0.3s ease;
 }
 
@@ -331,9 +184,5 @@ h2 {
   transform: scale(1.1);
 }
 
-
-
 </style>
 {% endblock body %}
-
- 
