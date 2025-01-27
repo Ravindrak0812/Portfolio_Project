@@ -53,11 +53,7 @@ def search(request):
     if query:
         results = Blog.objects.filter(
             title__icontains=query
-        ) | Blog.objects.filter(
-            description__icontains=query
-        ) | Blog.objects.filter(
-            authname__icontains=query
-        )
+        ) 
     else:
         results = Blog.objects.none()  # Return no results if query is empty
 
