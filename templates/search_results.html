@@ -6,103 +6,80 @@
 {% load static %}
 
 <style>
-    /* Terminal Loader Styles */
-    @keyframes blinkCursor {
-        50% {
-            border-right-color: transparent;
-        }
+  /* New Loader Styles */
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
+  
+  .jimu-primary-loading:before,
+  .jimu-primary-loading:after {
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+  
+  .jimu-primary-loading:before {
+    left: -19.992px;
+  }
+  
+  .jimu-primary-loading:after {
+    left: 19.992px;
+    -webkit-animation-delay: 0.32s !important;
+    animation-delay: 0.32s !important;
+  }
+  
+  .jimu-primary-loading:before,
+  .jimu-primary-loading:after,
+  .jimu-primary-loading {
+    background: #076fe5;
+    -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    width: 13.6px;
+    height: 32px;
+  }
+  
+  .jimu-primary-loading {
+    text-indent: -9999em;
+    margin: auto;
+    position: absolute;
+    right: calc(50% - 6.8px);
+    top: calc(50% - 16px);
+    -webkit-animation-delay: 0.16s !important;
+    animation-delay: 0.16s !important;
+  }
+  
+  @-webkit-keyframes loading-keys-app-loading {
+    0%, 80%, 100% {
+      opacity: .75;
+      box-shadow: 0 0 #076fe5;
+      height: 32px;
     }
-
-    @keyframes typeAndDelete {
-        0%,
-        10% {
-            width: 0;
-        }
-        45%,
-        55% {
-            width: 6.2em; /* Adjust width based on text content */
-        }
-        90%,
-        100% {
-            width: 0;
-        }
+  
+    40% {
+      opacity: 1;
+      box-shadow: 0 -8px #076fe5;
+      height: 40px;
     }
-
-    .terminal-loader {
-        border: 0.1em solid #333;
-        background-color: #1a1a1a;
-        color: #0f0;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 1.2em;
-        padding: 1.5em 1em;
-        width: 18em;
-        max-width: 90vw;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
-        overflow: hidden;
-        box-sizing: border-box;
+  }
+  
+  @keyframes loading-keys-app-loading {
+    0%, 80%, 100% {
+      opacity: .75;
+      box-shadow: 0 0 #076fe5;
+      height: 32px;
     }
-
-    .terminal-header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1.5em;
-        background-color: #333;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        padding: 0 0.4em;
-        box-sizing: border-box;
+  
+    40% {
+      opacity: 1;
+      box-shadow: 0 -8px #076fe5;
+      height: 40px;
     }
-
-    .terminal-controls {
-        float: right;
-    }
-
-    .control {
-        display: inline-block;
-        width: 0.6em;
-        height: 0.6em;
-        margin-left: 0.4em;
-        border-radius: 50%;
-        background-color: #777;
-    }
-
-    .control.close {
-        background-color: #e33;
-    }
-
-    .control.minimize {
-        background-color: #ee0;
-    }
-
-    .control.maximize {
-        background-color: #0b0;
-    }
-
-    .terminal-title {
-        float: left;
-        line-height: 1.5em;
-        color: #eee;
-    }
-
-    .text {
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 0.2em solid green; /* Cursor */
-        animation:
-            typeAndDelete 4s steps(11) infinite,
-            blinkCursor 0.5s step-end infinite alternate;
-        margin-top: 1.5em;
-    }
-
+  }
+  
     /* Content Section */
     .hidden {
         display: none;
@@ -194,20 +171,93 @@
         background-color: #218838;
     }
 
+    /* Responsive Back to Blog Button */
+.back-to-blog {
+    text-align: center;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.back-to-blog a {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block; /* Make the link behave like a block element for better responsiveness */
+    width: auto; /* Ensure it adapts to the content */
+    max-width: 100%; /* Prevent it from getting too wide */
+}
+
+.back-to-blog a:hover {
+    background-color: #218838;
+}
+
+/* Responsive Footer */
+footer {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Media Queries for small screens */
+@media (max-width: 767px) {
+    /* Adjust the font size and padding of the back-to-blog button on smaller screens */
+    .back-to-blog a {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+
+    /* Make sure the footer adjusts for small screens */
+    footer {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.fade-in {
+    display: block;
+    animation: fadeIn 1s ease-in forwards; /* 1s fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
 </style>
 
-<!-- Terminal Loader -->
-<div id="loader" class="terminal-loader">
-    <div class="terminal-header">
-        <div class="terminal-title">Status</div>
-        <div class="terminal-controls">
-            <div class="control close"></div>
-            <div class="control minimize"></div>
-            <div class="control maximize"></div>
-        </div>
-    </div>
-    <div class="text">Loading...</div>
-</div>
+<!-- New Loader -->
+<div class="loader">
+    <div class="justify-content-center jimu-primary-loading"></div>
+  </div>
+  
 
 
 <!-- Blog Section -->
@@ -252,45 +302,48 @@
 </section>
 
 <!-- Back to Blog Button -->
-<div class="back-to-blog">
+<div class="back-to-blog hidden">
     <a href="{% url 'blog' %}">Back to Blog</a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    // Show loader
-    function showLoader() {
-        $('#loader').removeClass('hidden');
+// Show loader
+function showLoader() {
+    $('.loader').removeClass('hidden'); // Show the new loader
+}
+
+// Hide loader and show content with animation
+function hideLoader() {
+    $('.loader').addClass('hidden'); // Hide the loader
+    $('#services').removeClass('hidden').addClass('fade-in'); // Show the services section with a fade-in animation
+    $('.back-to-blog').removeClass('hidden').addClass('fade-in'); // Show the Back to Blog button with fade-in animation
+}
+
+$(document).ready(function () {
+    showLoader(); // Show the loader when the page loads
+
+    // Simulate loading completion after 1 seconds
+    setTimeout(function () {
+        hideLoader(); // Hide loader and reveal content after 1 seconds
+    }, 1000); // 1000ms = 1 seconds
+});
+
+// Function to toggle the full description
+function toggleDescription(postTitle) {
+    const fullDescription = document.querySelector(`#description-${postTitle} .full-description`);
+    const readMoreLink = document.querySelector(`#description-${postTitle} .read-more`);
+    
+    if (fullDescription.style.display === "none") {
+        fullDescription.style.display = "inline";
+        readMoreLink.textContent = "Read Less";
+    } else {
+        fullDescription.style.display = "none";
+        readMoreLink.textContent = "Read More";
     }
+}
 
-    // Hide loader and show content with animation
-    function hideLoader() {
-        $('#loader').addClass('hidden');
-        $('#services').removeClass('hidden').addClass('fade-in');
-    }
 
-    $(document).ready(function () {
-        showLoader();
-
-        // Simulate loading completion after 2 seconds
-        setTimeout(function () {
-            hideLoader();
-        }, 2000); // 2000ms = 2 seconds
-    });
-
-    // Function to toggle the full description
-    function toggleDescription(postTitle) {
-        const fullDescription = document.querySelector(`#description-${postTitle} .full-description`);
-        const readMoreLink = document.querySelector(`#description-${postTitle} .read-more`);
-        
-        if (fullDescription.style.display === "none") {
-            fullDescription.style.display = "inline";
-            readMoreLink.textContent = "Read Less";
-        } else {
-            fullDescription.style.display = "none";
-            readMoreLink.textContent = "Read More";
-        }
-    }
 </script>
 
 {% endblock body %}

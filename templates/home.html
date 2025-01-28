@@ -1,87 +1,91 @@
 {% extends 'base.html' %}
+
 {% block title %}RK{% endblock title %}
+
 {% load static %}
+
 {% block hero %}
     {% block stylecss %}
         <style>
             /* From Uiverse.io by JkHuger */ 
-@keyframes loader_5191 {
-    from {
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .square {
-    background: #ddd;
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -5px;
-    margin-left: -5px;
-  }
-  
-  #sq1 {
-    margin-top: -25px;
-    margin-left: -25px;
-    animation: loader_5191 675ms ease-in-out 0s infinite alternate;
-  }
-  
-  #sq2 {
-    margin-top: -25px;
-    animation: loader_5191 675ms ease-in-out 75ms infinite alternate;
-  }
-  
-  #sq3 {
-    margin-top: -25px;
-    margin-left: 15px;
-    animation: loader_5191 675ms ease-in-out 150ms infinite;
-  }
-  
-  #sq4 {
-    margin-left: -25px;
-    animation: loader_5191 675ms ease-in-out 225ms infinite;
-  }
-  
-  #sq5 {
-    animation: loader_5191 675ms ease-in-out 300ms infinite;
-  }
-  
-  #sq6 {
-    margin-left: 15px;
-    animation: loader_5191 675ms ease-in-out 375ms infinite;
-  }
-  
-  #sq7 {
-    margin-top: 15px;
-    margin-left: -25px;
-    animation: loader_5191 675ms ease-in-out 450ms infinite;
-  }
-  
-  #sq8 {
-    margin-top: 15px;
-    animation: loader_5191 675ms ease-in-out 525ms infinite;
-  }
-  
-  #sq9 {
-    margin-top: 15px;
-    margin-left: 15px;
-    animation: loader_5191 675ms ease-in-out 600ms infinite;
-  }
-            /* Style for download resume button */
-            .download-resume-btn {
+            @keyframes loader_5191 {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .square {
+                background: #ddd;
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -5px;
+                margin-left: -5px;
+            }
+
+            #sq1 {
+                margin-top: -25px;
+                margin-left: -25px;
+                animation: loader_5191 675ms ease-in-out 0s infinite alternate;
+            }
+
+            #sq2 {
+                margin-top: -25px;
+                animation: loader_5191 675ms ease-in-out 75ms infinite alternate;
+            }
+
+            #sq3 {
+                margin-top: -25px;
+                margin-left: 15px;
+                animation: loader_5191 675ms ease-in-out 150ms infinite;
+            }
+
+            #sq4 {
+                margin-left: -25px;
+                animation: loader_5191 675ms ease-in-out 225ms infinite;
+            }
+
+            #sq5 {
+                animation: loader_5191 675ms ease-in-out 300ms infinite;
+            }
+
+            #sq6 {
+                margin-left: 15px;
+                animation: loader_5191 675ms ease-in-out 375ms infinite;
+            }
+
+            #sq7 {
+                margin-top: 15px;
+                margin-left: -25px;
+                animation: loader_5191 675ms ease-in-out 450ms infinite;
+            }
+
+            #sq8 {
+                margin-top: 15px;
+                animation: loader_5191 675ms ease-in-out 525ms infinite;
+            }
+
+            #sq9 {
+                margin-top: 15px;
+                margin-left: 15px;
+                animation: loader_5191 675ms ease-in-out 600ms infinite;
+            }
+
+            /* Style for download and view resume button */
+            .resume-btn {
                 margin-top: 20px;
-                padding: 8px 18px; /* Slightly smaller button */
+                padding: 8px 18px;
                 font-size: 14px;
                 color: white;
-                background-color: #007bff; /* Blue background */
+                background-color: #007bff;
                 border: none;
-                border-radius: 30px; /* Rounded button */
+                border-radius: 30px;
                 cursor: pointer;
                 text-decoration: none;
                 display: inline-block;
@@ -89,26 +93,53 @@
                 transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             }
 
-            /* Hover effect for the button */
-            .download-resume-btn:hover {
-                background-color: black; /* Darker blue on hover */
-                transform: scale(1.05); /* Slightly enlarge the button */
-                box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Add shadow on hover */
+            .resume-btn:hover {
+                background-color: black;
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
                 color:white;
             }
 
-            /* Focus effect (when the button is clicked) */
-            .download-resume-btn:focus {
+            .resume-btn:focus {
                 outline: none;
-                box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Prominent blue outline */
+                box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
             }
 
             /* Styling for the typed text */
             .typed {
-                color: #CE93CEFF !important; /* Purple color for typing text with increased specificity */
+                color: #CE93CEFF !important;
                 font-weight: 600;
             }
- 
+
+            /* Music Player Styles */
+            .music-player {
+                margin-top: 20px;
+                text-align: center;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                width: 250px;
+            }
+
+            .music-player audio {
+                width: 100%;
+            }
+
+            .play-btn,
+            .pause-btn {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+            .play-btn:hover,
+            .pause-btn:hover {
+                background-color: #0056b3;
+            }
         </style>
     {% endblock stylecss %}
 
@@ -123,10 +154,31 @@
             <p><span class="typed" data-typed-items="Designer, Developer, Programmer"></span></p>
             
             <!-- Download Resume Button -->
-            <a href="{% static 'assets/img/RESUMENEW.docx' %}" download="Ravindra_Kumar_Resume.pdf" class="download-resume-btn">
+            <a href="{% static 'assets/img/RESUMENEW.docx' %}" download="Ravindra_Kumar_Resume.pdf" class="resume-btn">
                 Download Resume
             </a>
-         
+            
+            <a href="{% static 'assets/img/newResume (2).pdf' %}" target="_blank" class="resume-btn">
+                View Resume
+            </a>
+            
+            
+
+            
         </div>
     </section>
+
+    <script>
+        let music = document.getElementById('music');
+
+        // Play music
+        function playMusic() {
+            music.play();
+        }
+
+        // Pause music
+        function pauseMusic() {
+            music.pause();
+        }
+    </script>
 {% endblock hero %}
