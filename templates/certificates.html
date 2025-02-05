@@ -11,6 +11,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Certificates</title>
     <style>
+        /* Initially hide the certificate container */
+        #certificate-container {
+            display: none;
+            opacity: 0;
+        }
+
+        /* Loader Styles */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .jimu-primary-loading:before,
+        .jimu-primary-loading:after {
+            position: absolute;
+            top: 0;
+            content: '';
+        }
+
+        .jimu-primary-loading:before {
+            left: -19.992px;
+        }
+
+        .jimu-primary-loading:after {
+            left: 19.992px;
+            -webkit-animation-delay: 0.32s !important;
+            animation-delay: 0.32s !important;
+        }
+
+        .jimu-primary-loading:before,
+        .jimu-primary-loading:after,
+        .jimu-primary-loading {
+            background: #076fe5;
+            -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+            animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+            width: 13.6px;
+            height: 32px;
+        }
+
+        .jimu-primary-loading {
+            text-indent: -9999em;
+            margin: auto;
+            position: absolute;
+            right: calc(50% - 6.8px);
+            top: calc(50% - 16px);
+            -webkit-animation-delay: 0.16s !important;
+            animation-delay: 0.16s !important;
+        }
+
+        @keyframes loading-keys-app-loading {
+            0%, 80%, 100% {
+                opacity: .75;
+                box-shadow: 0 0 #076fe5;
+                height: 32px;
+            }
+            40% {
+                opacity: 1;
+                box-shadow: 0 -8px #076fe5;
+                height: 40px;
+            }
+        }
+
+        /* Fade-in Effect */
+        .fade-in {
+            display: block;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
@@ -40,7 +122,7 @@
 
         /* Certificate Container */
         .certificate-container {
-            display: flex;  /* Ensure the container is visible on load */
+            display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
@@ -132,7 +214,13 @@
     </header>
 
     <main>
-        <section class="certificate-container">
+        <!-- Loader -->
+        <div class="loader">
+            <div class="justify-content-center jimu-primary-loading"></div>
+        </div>
+
+        <!-- Certificate Section -->
+        <section id="certificate-container" class="certificate-container">
             <!-- Example Certificate -->
             <div class="certificate-card">
                 <img src="{% static 'assets/img/mern.jpg' %}" class="certificate-image">
@@ -141,15 +229,16 @@
                 <a href="{% static 'assets/img/MERN.pdf' %}" target="_blank" class="view-btn">View</a>
                 <a href="{% static 'assets/img/MERN.pdf' %}" download class="download-btn">Download</a>
             </div>
-        
+
             <div class="certificate-card">
-                <img src="{% static 'assets/img/pythonwithdjnago.jpg' %}"  class="certificate-image">
+                <img src="{% static 'assets/img/pythonwithdjnago.jpg' %}" class="certificate-image">
                 <h2>Python With Django</h2>
                 <p>Issued by Shri Balaji Infotech, December 2022</p>
                 <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" target="_blank" class="view-btn">View</a>
                 <a href="{% static 'assets/img/Python+Django_Certificate.jpg' %}" download class="download-btn">Download</a>
             </div>
             
+            <!-- Additional Certificates -->
             <div class="certificate-card">
                 <img src="{% static 'assets/img/hackthon.jpg' %}" class="certificate-image">
                 <h2>ByteBash Hackathon</h2>
@@ -180,12 +269,23 @@
                 <a href="{% static 'assets/img/python1.png' %}" target="_blank" class="view-btn">View</a>
                 <a href="{% static 'assets/img/python1.png' %}" download class="download-btn">Download</a>
             </div>
-            
-            <!-- Add More Certificates -->
         </section>
     </main>
 
+    <script>
+        // Show the content after 1 second and hide the loader
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.querySelector(".loader").style.display = "none"; // Hide loader
+                const certificateContainer = document.querySelector("#certificate-container");
+                certificateContainer.style.display = "flex";  // Show certificates
+                certificateContainer.classList.add("fade-in"); // Apply fade-in effect
+            }, 1000);  // 1 second delay
+        });
+    </script>
 </body>
 </html>
 
 {% endblock body %}
+
+        
