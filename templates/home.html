@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}RK{% endblock title %}
+{% block title %}Home{% endblock title %}
 
 {% load static %}
 
@@ -80,8 +80,8 @@
             /* Style for download and view resume button */
             .resume-btn {
                 margin-top: 20px;
-                padding: 8px 18px;
-                font-size: 14px;
+                padding: 12px 24px;
+                font-size: 16px;
                 color: white;
                 background-color: #007bff;
                 border: none;
@@ -91,13 +91,33 @@
                 display: inline-block;
                 text-align: center;
                 transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .resume-btn::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 300%;
+                height: 300%;
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: translate(-50%, -50%) rotate(45deg);
+                transition: all 0.5s ease;
+                z-index: 0;
+            }
+
+            .resume-btn:hover::before {
+                width: 0;
+                height: 0;
             }
 
             .resume-btn:hover {
-                background-color: black;
+                background-color: #0056b3;
                 transform: scale(1.05);
-                box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-                color:white;
+                box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+                color: white;
             }
 
             .resume-btn:focus {
@@ -109,36 +129,37 @@
             .typed {
                 color: #CE93CEFF !important;
                 font-weight: 600;
+                font-size: 24px;
+                animation: fadeIn 2s ease-in-out;
             }
 
-            /* Music Player Styles */
-            .music-player {
-                margin-top: 20px;
-                text-align: center;
-                background-color: #333;
-                padding: 10px;
-                border-radius: 5px;
-                width: 250px;
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
             }
 
-            .music-player audio {
-                width: 100%;
+            /* Visitor Count Section */
+            .visitor-count {
+                margin-bottom: 20px;
+                font-size: 18px;
+                color: #007bff;
+                animation: bounce 2s infinite;
             }
 
-            .play-btn,
-            .pause-btn {
-                background-color: #007bff;
-                color: white;
-                border: none;
-                padding: 8px 15px;
-                border-radius: 5px;
-                cursor: pointer;
-                margin-top: 10px;
-            }
-
-            .play-btn:hover,
-            .pause-btn:hover {
-                background-color: #0056b3;
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-20px);
+                }
+                60% {
+                    transform: translateY(-10px);
+                }
             }
         </style>
     {% endblock stylecss %}
@@ -151,7 +172,7 @@
             </div>
             
             <h1>I'm Ravindra Kumar</h1>
-            <p><span class="typed" data-typed-items="Designer, Developer, Programmer"></span></p>
+            <p><span class="typed" data-typed-items="Enthusiast,Designer, Developer, Programmer"></span></p>
             
             <!-- Download Resume Button -->
             <a href="{% static 'assets/img/RESUMENEW.docx' %}" download="Ravindra_Kumar_Resume.pdf" class="resume-btn">
@@ -161,24 +182,6 @@
             <a href="{% static 'assets/img/newResume (2).pdf' %}" target="_blank" class="resume-btn">
                 View Resume
             </a>
-            
-            
-
-            
         </div>
     </section>
-
-    <script>
-        let music = document.getElementById('music');
-
-        // Play music
-        function playMusic() {
-            music.play();
-        }
-
-        // Pause music
-        function pauseMusic() {
-            music.pause();
-        }
-    </script>
 {% endblock hero %}
