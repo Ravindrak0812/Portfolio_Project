@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-^kbe360=z@3eh9su#9-h@&_$m=fc0z=*p3saq8zsljhwz68oam
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['portfolio-project1-g5h7.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['portfolio-project1-g5h7.onrender.com', '127.0.0.1', 'localhost','.vercel.app', '.now.sh']
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
@@ -138,7 +138,7 @@ STATIC_URL = '/static/'
 
 
 # Add this line
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build','static')
 
 # Optional: Specify additional directories for static files if needed
 STATICFILES_DIRS = [
