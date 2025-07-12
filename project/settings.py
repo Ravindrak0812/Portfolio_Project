@@ -34,7 +34,6 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -45,7 +44,9 @@ INSTALLED_APPS = [
     'authapp',
     'blog',
     'newsapi',
+    'openai'
 ]
+
 
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware", 
