@@ -11,7 +11,7 @@
   </title>
   <style>
     ::selection {
-      color: yellow;
+      color: blue;
   }
   </style>
   <meta content="" name="description">
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <nav id="navbar" class="nav-menu navbar" style="padding-left:20px">
+      <nav id="navbar" class="nav-menu navbar" style="padding-left:20px;">
 
    <ul>
   <li><a href="{% url 'home' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
@@ -81,9 +81,9 @@
     <img src="{% static 'assets/img/certificate.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>Certificates</span></a></li>
   <li><a href="{% url 'projects' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
     <img src="{% static 'assets/img/code.png' %}" height="25px" width="30px" style="padding-right:6px"> <span>Projects</span></a></li>
+  <li><a href="{% url 'fetch_news' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
+    <img src="{% static 'assets/img/news.png' %}" height="20px" width="25px" style="padding-right:6px"> <span>News</span></a></li>
 
-  <li><a href="{% url 'assistance' %}" class="nav-link scrollto" style="padding-right:6px; transition: color 0.3s;" onmouseover="this.style.color='yellow'" onmouseout="this.style.color='';">
-    <img src="{% static 'assets/img/operator.png' %}" height="22px" width="25px" style="padding-right:6px"> <span>My Assistance</span></a></li>
 </ul>
 
 
