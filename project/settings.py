@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'portfolio',
     'authapp',
     'blog',
-    'newsapi',
 ]
 
 
