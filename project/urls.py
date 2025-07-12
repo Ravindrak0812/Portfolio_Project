@@ -10,5 +10,6 @@ urlpatterns = [
     path('', include('portfolio.urls')),
     path('auth/', include('authapp.urls')),
     path('blog/', include('blog.urls')),  
+    path('newsapi/', include('newsapi.urls')),  
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
