@@ -2,53 +2,83 @@
 {% block title %}About{% endblock title %}
 {% block stylecss %}
 {% load static %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"> <!-- AOS library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
+    :root {
+        --primary: #3498db;
+        --secondary: #2c3e50;
+        --accent: #e74c3c;
+        --light: #ecf0f1;
+        --gray: #7f8c8d;
+    }
+
     body {
-        background-color: #121212; /* Dark background */
-        color: #fff; /* White text */
-        font-family: 'Roboto', sans-serif; /* Modern font */
+        background-color: #ffffff;
+        color: var(--secondary);
+        font-family: 'Roboto', sans-serif;
         line-height: 1.8;
     }
 
     .about {
-        padding: 60px 0;
+        padding: 80px 0;
     }
 
     .section-title h2 {
-        color: #00ffc3; /* Teal accent color */
+        color: var(--secondary);
         font-size: 2.5rem;
         font-weight: bold;
         text-transform: uppercase;
-        text-shadow: 0 2px 4px rgba(0, 255, 195, 0.5);
         margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title h2:after {
+        content: '';
+        position: absolute;
+        width: 60%;
+        height: 3px;
+        background: var(--primary);
+        bottom: -10px;
+        left: 0;
     }
 
     .section-title p {
-        color: #d1d1d1; /* Subtle gray */
+        color: var(--gray);
         font-size: 1.2rem;
+        margin-top: 20px;
     }
 
     .img-fluid {
         border-radius: 10px;
-        box-shadow: 0 8px 15px rgba(0, 255, 195, 0.2);
-        width: 80%; /* Reduced the width */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        width: 80%;
         margin: 0 auto;
+        border: 5px solid var(--light);
+        transition: transform 0.3s ease;
+    }
+
+    .img-fluid:hover {
+        transform: scale(1.02);
     }
 
     .content h3 {
         font-size: 2rem;
-        color: #00ffc3;
+        color: var(--secondary);
         margin-bottom: 20px;
         text-transform: uppercase;
+        font-weight: 700;
     }
 
     .content .fst-italic {
-        color: #d1d1d1; /* Subtle gray */
+        color: var(--gray);
         font-size: 1.1rem;
         margin-bottom: 30px;
+        font-style: italic;
+        border-left: 3px solid var(--primary);
+        padding-left: 15px;
     }
 
     .content ul {
@@ -60,147 +90,368 @@
         display: flex;
         align-items: center;
         margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .content ul li:hover {
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .content ul li i {
-        color: #00ffc3; /* Teal accent */
+        color: var(--primary);
         margin-right: 10px;
+        width: 25px;
+        text-align: center;
     }
 
-    .skills {
-        margin-top: 40px;
+    /* Enhanced Skills Section */
+    .skills-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    .skills h4 {
-        font-size: 1.5rem;
-        color: #00ffc3;
-        margin-bottom: 20px;
+    .skills-title {
+        text-align: center;
+        margin-bottom: 25px;
+        position: relative;
     }
 
-    .skills-icons {
-        display: flex;
-        flex-wrap: wrap;
+    .skills-title:after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: var(--primary);
+        margin: 10px auto 0;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
         gap: 20px;
-        justify-content: center;
+        justify-items: center;
     }
 
-    .skills-icons img {
+    .skill-card {
+        position: relative;
         width: 60px;
-        height: 60px;
-        background-color: #222;
-        border-radius: 8px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .skill-icon {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        filter: grayscale(30%);
+        transition: all 0.3s ease;
         padding: 10px;
-        box-shadow: 0 4px 8px rgba(0, 255, 195, 0.3);
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .skills-icons img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 15px rgba(0, 255, 195, 0.5);
+    .skill-card:hover .skill-icon {
+        filter: grayscale(0%);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
-    /* Animation for sections */
-    .aos-animate {
-        opacity: 1 !important;
-        transform: translate(0) !important;
+    .skill-name {
+        margin-top: 8px;
+        font-size: 0.7rem;
+        text-align: center;
+        color: var(--gray);
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
-    .row {
-        margin-top: 30px;
+    .skill-card:hover .skill-name {
+        opacity: 1;
     }
 
-    /* Hover effects for list items */
-    .content ul li:hover {
-        background-color: #333;
-        border-radius: 5px;
-        padding: 5px;
-        transition: 0.3s ease;
+    .learning-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: var(--accent);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 0.6rem;
+        font-weight: bold;
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    /* Back to Top Button */
+    /* Professional badge */
+    .current-position {
+        background-color: var(--primary);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-left: 10px;
+        vertical-align: middle;
+        box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+    }
+
+    /* Enhanced Timeline */
+    .timeline {
+        position: relative;
+        margin: 30px 0;
+        padding-left: 30px;
+    }
+
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 18px;
+        height: 100%;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--primary), rgba(52, 152, 219, 0.3));
+    }
+
+    .timeline-item {
+        margin-bottom: 30px;
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: 10px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 3px solid white;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    .timeline-date {
+        font-size: 0.9rem;
+        color: var(--gray);
+        margin-bottom: 5px;
+    }
+
+    .timeline-title {
+        font-weight: 600;
+        color: var(--secondary);
+        margin-bottom: 5px;
+    }
+
+    .timeline-company {
+        color: var(--primary);
+        font-weight: 500;
+    }
+
+    .timeline-description {
+        color: var(--gray);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .section-divider {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(52, 152, 219, 0), var(--primary), rgba(52, 152, 219, 0));
+        margin: 40px 0;
+    }
+
+    /* Floating Action Button */
     .back-to-top {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #00ffc3;
-        color: #121212;
+        bottom: 30px;
+        right: 30px;
+        background-color: var(--primary);
+        color: white;
         border: none;
         border-radius: 50%;
-        padding: 15px;
-        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
         cursor: pointer;
         display: none;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        z-index: 99;
     }
 
     .back-to-top:hover {
-        background-color: #00b79f;
+        background-color: #2980b9;
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
     }
 
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .skills-grid {
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 15px;
+        }
+        .skill-card {
+            width: 50px;
+            height: 70px;
+        }
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
 </style>
-
 {% endblock stylecss %}
 
 {% block body %}
-
 <section id="about" class="about">
     <div class="container">
         <div class="section-title text-center" data-aos="fade-up">
             <h2>About Me</h2>
-            <p>Hi 👋, I'm Ravindra Kumar<br> Aspiring Software Engineer from India</p>
+            <p>Hi 👋, I'm Ravindra Kumar<br>Data Engineer at Kfintech Technologies</p>
         </div>
 
         <div class="row align-items-center">
             <div class="col-lg-4" data-aos="fade-right">
-                <img style="border-radius:20%" height="300px" width="300px" src="{% static 'assets/img/DSC_0334.JPG' %}" class="img-fluid" alt="Profile Image">
+                <img style="border-radius:20%" height="300px" width="300px" src="{% static 'assets/img/ravi1.jpg' %}" class="img-fluid" alt="Profile Image">
             </div>
             <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-                <h3>Web Developer</h3>
+                <h3>Data Engineer <span class="current-position">Currently Working</span></h3>
                 <p class="fst-italic">
-                    "Empowering digital landscapes with the stroke of a keystroke. Bridging creativity and functionality, sculpting virtual wonders. Where pixels meet purpose, I thrive as a web developer."
+                    "Transforming raw data into meaningful insights. Building robust data pipelines and architectures to empower data-driven decision making. Passionate about cloud technologies and scalable data solutions."
                 </p>
 
                 <div class="row">
                     <div class="col-lg-6">
                         <ul>
                             <li data-aos="fade-up"><i class="fas fa-birthday-cake"></i> <strong>Birthday:</strong> <span>08 Dec 2003</span></li>
-                            <li data-aos="fade-up"><i class="fas fa-globe"></i> <strong>Website:</strong> <span>www.example.com</span></li>
+                            <li data-aos="fade-up"><i class="fas fa-briefcase"></i> <strong>Company:</strong> <span>Kfintech Technologies</span></li>
                             <li data-aos="fade-up"><i class="fas fa-phone"></i> <strong>Phone:</strong> <span>+91 9115344392</span></li>
-                            <li data-aos="fade-up"><i class="fas fa-map-marker-alt"></i> <strong>City:</strong> <span>Uttar Pradesh, India</span></li>
+                            <li data-aos="fade-up"><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> <span>India</span></li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
                         <ul>
                             <li data-aos="fade-up"><i class="fas fa-user"></i> <strong>Age:</strong> <span>22</span></li>
-                            <li data-aos="fade-up"><i class="fas fa-graduation-cap"></i> <strong>Degree:</strong> <span>Master Of Computer Application</span></li>
+                            <li data-aos="fade-up"><i class="fas fa-graduation-cap"></i> <strong>Education:</strong> <span>Master Of Computer Application</span></li>
                             <li data-aos="fade-up"><i class="fas fa-envelope"></i> <strong>Email:</strong> <span>ravindrak0812@gmail.com</span></li>
-                            <li data-aos="fade-up"><i class="fas fa-briefcase"></i> <strong>Freelance:</strong> <span>Not Available</span></li>
+                            <li data-aos="fade-up"><i class="fas fa-calendar-alt"></i> <strong>Experience:</strong> <span>1+ Years</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="skills">
-                    <h4 data-aos="fade-up">Technical Skills</h4>
-                    <div class="skills-icons">
-                        <img src="{% static 'assets/img/html.png' %}" alt="HTML" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/css.png' %}" alt="CSS" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/js.png' %}" alt="JavaScript" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/bootstrap.png' %}" alt="Bootstrap" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/tailwindcss.jpg' %}" alt="Tailwind CSS" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/djnago.png' %}" alt="Django" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/git.png' %}" alt="Git" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/github.png' %}" alt="GitHub" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/python.png' %}" alt="Python" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/java.png' %}" alt="Java" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/cpp.png' %}" alt="C++" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/c.png' %}" alt="C" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/sql1.jpg' %}" alt="C" height="50px" width="50px" data-aos="zoom-in">
-                        <img src="{% static 'assets/img/postman1.png' %}" alt="C" height="50px" width="50px" data-aos="zoom-in">
+                <!-- Experience Timeline -->
+                <div class="experience mt-5">
+                    <h4 data-aos="fade-up">Professional Journey</h4>
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">June 2024 - Present</div>
+                            <div class="timeline-title">Data Engineer Intern</div>
+                            <div class="timeline-company">Kfintech Technologies</div>
+                            <div class="timeline-description">
+                                Working on building and optimizing data pipelines, implementing ETL processes, and contributing to data architecture solutions using Python, SQL, and cloud technologies.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <hr class="section-divider">
+<section>
+        <section style="display:flex; flex-direction:row; ">
+        <!-- Enhanced Technical Skills Section -->
+        <div class="skills-container" data-aos="fade-up"  >
+            <h4 class="skills-title">Technical Skills</h4>
+            <div class="skills-grid">
+                <!-- Cloud & Data -->
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="skill-icon" title="Google Cloud">
+                    <span class="skill-name">GCP</span>
+                    <span class="learning-badge">Learning</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" class="skill-icon" title="AWS">
+                    <span class="skill-name">AWS</span>
+                    <span class="learning-badge">Learning</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon" title="Python">
+                    <span class="skill-name">Python</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="skill-icon" title="MySQL">
+                    <span class="skill-name">MySQL</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" class="skill-icon" title="Apache">
+                    <span class="skill-name">Apache</span>
+                </div>
+                
+                <!-- Programming -->
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="skill-icon" title="Java">
+                    <span class="skill-name">Java</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="skill-icon" title="C++">
+                    <span class="skill-name">C++</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="skill-icon" title="Django">
+                    <span class="skill-name">Django</span>
+                </div>
+                
+                <!-- Web -->
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="skill-icon" title="HTML5">
+                    <span class="skill-name">HTML5</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="skill-icon" title="CSS3">
+                    <span class="skill-name">CSS3</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skill-icon" title="JavaScript">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="skill-icon" title="Bootstrap">
+                    <span class="skill-name">Bootstrap</span>
+                </div>
+                
+                <!-- Tools -->
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skill-icon" title="Git">
+                    <span class="skill-name">Git</span>
+                </div>
+                <div class="skill-card" data-aos="zoom-in">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="skill-icon" title="GitHub">
+                    <span class="skill-name">GitHub</span>
+                </div>
+            </div>
+        </div>
     </div>
+    </section>
+    
 </section>
 
 <!-- Back to Top Button -->
@@ -208,25 +459,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000 });  // Initialize AOS animations with a duration of 1 second
-
-    // Back to Top Button functionality
+    AOS.init({ duration: 1000 });
+    
+    // Back to Top Button
     const backToTopBtn = document.getElementById('back-to-top-btn');
-
-    // Show the button when scrolling down 300px from the top
-    window.onscroll = function () {
+    window.onscroll = function() {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            backToTopBtn.style.display = "block";
+            backToTopBtn.style.display = "flex";
         } else {
             backToTopBtn.style.display = "none";
         }
     };
-
-    // Scroll to top when the button is clicked
-    backToTopBtn.onclick = function () {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+    backToTopBtn.onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 </script>
-
 {% endblock body %}
